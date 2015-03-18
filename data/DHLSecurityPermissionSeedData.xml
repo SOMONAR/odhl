@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-engine-xml>
+    <SecurityPermission description="View operations in the FEDEX Component." permissionId="FEDEX_VIEW"/>
+    <SecurityPermission description="Create operations in the FEDEX Component." permissionId="FEDEX_CREATE"/>
+    <SecurityPermission description="Update operations in the FEDEX Component." permissionId="FEDEX_UPDATE"/>
+    <SecurityPermission description="Delete operations in the FEDEX Component." permissionId="FEDEX_DELETE"/>
+    <SecurityPermission description="ALL operations in the FEDEX Component." permissionId="FEDEX_ADMIN"/>
+
+    <SecurityGroupPermission groupId="SUPER" permissionId="FEDEX_ADMIN"/>
+
+</entity-engine-xml>

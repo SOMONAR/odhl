@@ -1,0 +1,1 @@
+place component specific xsd files here.
