@@ -1,2 +1,2 @@
 # ofbiz-dhl
-Separating the dhl functionality in OFBiz Product/Facility application into a separate, hot-deploy component
+Separating the DHL integation functionality in OFBiz Product/Facility application into a separate, hot-deploy component
