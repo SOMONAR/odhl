@@ -20,5 +20,65 @@
 -->
 
 <entity-engine-xml>
-
+    
+    <SystemProperty
+    description="DHL Shipment Label configuration" 
+    systemPropertyId="shipment.dhl.label.image.format" 
+    systemPropertyValue="PNG" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL API Schema Templates" 
+    systemPropertyId="shipment.dhl.template.rate.estimate" 
+    systemPropertyValue="api.schema.DHL" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Connection URL" 
+    systemPropertyId="shipment.dhl.connect.url" 
+    systemPropertyValue="HTTPS://eCommerce.airborne.com/ApiLandingTest.asp" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL timeout in seconds" 
+    systemPropertyId="shipment.dhl.connect.timeout" 
+    systemPropertyValue="60" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Head Attributes - version" 
+    systemPropertyId="shipment.dhl.head.version" 
+    systemPropertyValue="1.1" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Head Attributes - action" 
+    systemPropertyId="shipment.dhl.head.action" 
+    systemPropertyValue="Request" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Credentials - userid" 
+    systemPropertyId="shipment.dhl.access.userid" 
+    systemPropertyValue="YOUR DHL ShipIT USER ID" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Credentials - password" 
+    systemPropertyId="shipment.dhl.access.password" 
+    systemPropertyValue="YOUR DHL ShipIT ACCESS PASSWORD" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Credentials - account number" 
+    systemPropertyId="shipment.dhl.access.accountNbr" 
+    systemPropertyValue="YOUR DHL ShipIT ACCOUNT NUMBER" 
+    systemResourceId="dhl"/>
+    
+    <SystemProperty
+    description="DHL Credentials - shipping key" 
+    systemPropertyId="shipment.dhl.access.shippingKey" 
+    systemPropertyValue="YOUR DHL ShipIT SHIPPING KEY" 
+    systemResourceId="dhl"/>
+    
 </entity-engine-xml>
