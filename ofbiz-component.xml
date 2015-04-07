@@ -40,5 +40,7 @@
         server="default-server"
         location="webapp/dhl"
         base-permission="OFBTOOLS,dhl"
-        mount-point="/dhl"/>
+        mount-point="/dhl"
+        menu-name="secondary"
+        />
 </ofbiz-component>

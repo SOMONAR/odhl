@@ -17,7 +17,7 @@
                 <set field="layoutSettings.styleSheets[]" value="/${activeApp}//images/${activeApp}.css" global="true"/>
                 
                 <set field="applicationMenuName" value="MainAppBar" global="true"/>
-                <set field="applicationMenuLocation" value="component://dhl/widget/dhl-Menus.xml" global="true"/>
+                <set field="applicationMenuLocation" value="component://dhl/widget/${activeApp}-Menus.xml" global="true"/>
                 <set field="applicationTitle" value="${uiLabelMap.dhlApplication}" global="true"/>
             </actions>
             <widgets>

@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/ofbiz-properties.xsd">
     <property key="dhlApplication">
-        <value xml:lang="en">DHL Integration Application</value>
-        <value xml:lang="nl">DHL Integration</value>
-        <value xml:lang="zh-TW">DHL Integration應用程式</value>
+        <value xml:lang="en">DHL Integration</value>
     </property>
     <property key="dhlCompanyName">
-        <value xml:lang="en">ORRTIZ: DHL Integration</value>
-        <value xml:lang="nl">ORRTIZ: DHL Integration</value>
-        <value xml:lang="zh-TW">OFBiz: DHL Integration</value>
+        <value xml:lang="en">DHL</value>
     </property>
     <property key="dhlCompanySubtitle">
-        <value xml:lang="en">Part of the ORRTIZ: BMS Suite of Business Solutions</value>
-        <value xml:lang="nl">Onderdeel van de ORRTIZ: BMS suite van business solutions</value>
-        <value xml:lang="zh-TW">開源軟體OFBiz的組成部分</value>
+        <value xml:lang="en">An Apache OFBiz(tm) Component</value>
     </property>
     <property key="dhlViewPermissionError">
         <value xml:lang="en">You are not allowed to view this page.</value>
-        <value xml:lang="nl">U heeft geen rechten om deze pagina te bekijken</value>
-        <value xml:lang="zh-TW">不允許您檢視這個頁面.</value>
     </property>
 </resource>
