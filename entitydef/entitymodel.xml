@@ -26,7 +26,26 @@
     <!-- ========================================================= -->
     <title>Entity of DHL Integration Component</title>
     <description>None</description>
-    <copyright></copyright>
-    <version></version>
-
+    <copyright>Apache OFBiz</copyright>
+    <version>1.0</version>
+    
+    <entity entity-name="ShipmentGatewayDhl"
+            package-name="org.ofbiz.shipment.shipment"
+            title="DHL Shipment Gateway Configuration">
+      <field name="shipmentGatewayConfigId" type="id-ne"></field>
+      <field name="connectUrl" type="value"><description>DHL Connection URL</description></field>
+      <field name="connectTimeout" type="numeric"><description>Timeout in seconds</description></field>
+      <field name="headVersion" type="short-varchar"><description>Head version attribute</description></field>
+      <field name="headAction" type="value"><description>Head action attribute</description></field>
+      <field name="accessUserId" type="value" encrypt="true"><description>Your DHL ShipIT User Id</description></field>
+      <field name="accessPassword" type="value" encrypt="true"><description>Your DHL ShipIT Access Password</description></field>
+      <field name="accessAccountNbr" type="value" encrypt="true"><description>Your DHL ShipIT Account Number</description></field>
+      <field name="accessShippingKey" type="value" encrypt="true"><description>Your DHL ShipIT Shipping Key</description></field>
+      <field name="labelImageFormat" type="short-varchar"><description>Label image format</description></field>
+      <field name="rateEstimateTemplate" type="value"><description>API Schema Templates</description></field>
+      <prim-key field="shipmentGatewayConfigId"/>
+      <relation type="one" fk-name="SGDHL_SGC" rel-entity-name="ShipmentGatewayConfig">
+        <key-map field-name="shipmentGatewayConfigId"/>
+      </relation>
+    </entity>
 </entitymodel>
