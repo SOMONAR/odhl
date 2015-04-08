@@ -21,4 +21,76 @@
 
 <entity-engine-xml>
 
+    <ShipmentGatewayConfigType shipmentGatewayConfTypeId="dhl" hasTable="N" description="DHL Shipment Gateway"/>
+    <ShipmentGatewayConfig shipmentGatewayConfigId="dhl" shipmentGatewayConfTypeId="dhl" description="DHL Config"/>
+    <ShipmentGatewayDhl shipmentGatewayConfigId="dhl" connectUrl="https://eCommerce.airborne.com/ApiLandingTest.asp" connectTimeout="60" headVersion="1.1" headAction="Request" accessUserId="YOUR DHL ShipIT USER ID" accessPassword="YOUR DHL ShipIT ACCESS PASSWORD" accessAccountNbr="YOUR DHL ShipIT ACCOUNT NUMBER" accessShippingKey="YOUR DHL ShipIT SHIPPING KEY" labelImageFormat="PNG" rateEstimateTemplate="api.schema.DHL"/>
+    
+    <Party partyId="dhl" partyTypeId="PARTY_GROUP"/>
+    <PartyGroup partyId="dhl" groupName="DHL"/>
+    <PartyRole partyId="dhl" roleTypeId="CARRIER" fromDate="2001-01-01 00:00:00.0"/>
+    <PartyRole partyId="dhl" roleTypeId="SUPPLIER" fromDate="2001-01-01 00:00:00.0"/>
+    <PartyRole partyId="dhl" roleTypeId="VENDOR" fromDate="2001-01-01 00:00:00.0"/>
+    <PartyRole partyId="dhl" roleTypeId="BILL_FROM_VENDOR" fromDate="2001-01-01 00:00:00.0"/>
+    <PartyRole partyId="dhl" roleTypeId="SHIP_FROM_VENDOR" fromDate="2001-01-01 00:00:00.0"/>
+    
+    <!-- DHL shipping options -->
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="INT_EXPRESS" sequenceNumber="1" carrierServiceCode="IE"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="EXP_SATURDAY" sequenceNumber="2" carrierServiceCode="E SAT"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="EXP_10_30_AM" sequenceNumber="3" carrierServiceCode="E 10.30 AM"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="EXPRESS" sequenceNumber="4" carrierServiceCode="E"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="NEXT_PM" sequenceNumber="5" carrierServiceCode="N"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="SECOND_DAY" sequenceNumber="6" carrierServiceCode="S"/>
+    <CarrierShipmentMethod partyId="dhl" roleTypeId="CARRIER" shipmentMethodTypeId="GROUND" sequenceNumber="7" carrierServiceCode="G"/>
+    <!-- End of DHL Data-->
+    
+    <CustomMethod customMethodId="SHIP_EST_dhl" customMethodTypeId="SHIP_EST" customMethodName="dhlRateEstimate"   description="DHL rate estimate"/>
+    
+    <ProductStoreShipmentMeth 
+        productStoreShipMethId="dhl-EXPRESS" 
+        productStoreId="PRODUCTSTOREID" 
+        partyId="dhl" 
+        includeNoChargeItems="N" 
+        allowUspsAddr="N" 
+        requireUspsAddr="N" 
+        roleTypeId="CARRIER" 
+        shipmentMethodTypeId="EXPRESS" 
+        sequenceNumber="7"
+        />
+        
+    <ProductStoreShipmentMeth 
+        productStoreShipMethId="dhl-NEXT_PM" 
+        productStoreId="PRODUCTSTOREID" 
+        partyId="dhl" 
+        includeNoChargeItems="N" 
+        allowUspsAddr="N" 
+        requireUspsAddr="N" 
+        roleTypeId="CARRIER" 
+        shipmentMethodTypeId="NEXT_PM" 
+        sequenceNumber="8"
+        />
+        
+    <ProductStoreShipmentMeth 
+        productStoreShipMethId="dhl-SECOND_DAY" 
+        productStoreId="PRODUCTSTOREID" 
+        partyId="dhl" 
+        includeNoChargeItems="N" 
+        allowUspsAddr="N" 
+        requireUspsAddr="N" 
+        roleTypeId="CARRIER" 
+        shipmentMethodTypeId="SECOND_DAY" 
+        sequenceNumber="9"
+        />
+        
+    <ProductStoreShipmentMeth 
+        productStoreShipMethId="dhl-GROUND" 
+        productStoreId="PRODUCTSTOREID" 
+        partyId="dhl" 
+        includeNoChargeItems="N" 
+        allowUspsAddr="N" 
+        requireUspsAddr="N" 
+        roleTypeId="CARRIER" 
+        shipmentMethodTypeId="GROUND" 
+        sequenceNumber="10"
+        />
+    
 </entity-engine-xml>
