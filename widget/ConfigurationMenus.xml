@@ -36,9 +36,7 @@
             <condition>
                 <if-has-permission permission="${activeApp}" action="_ADMIN"/>
             </condition>
-            <link target="EditShipmentGatewayConfig">
-                <parameter param-name="shipmentGatewayConfigId" value="${activeApp}"/>
-            </link>
+            <link target="EditShipmentGatewayConfig"/>
         </menu-item>
     </menu>
     
