@@ -4,7 +4,7 @@ Disentanglement of the 3rd party Shipment Integration Solution for DHL in the OF
 ##Development
 Just put the following in the svn:externals properties of the hot-deploy folder of your OFBiz implementation for a checkout:
 
-fedex         https://github.com/ORRTIZ/ofbiz-fedex/trunk
+dhl         https://github.com/ORRTIZ/ofbiz-dhl/trunk
 
 After having updated the hot-deploy folder (to execute the checkout from the repository), you'll need to build OFBiz again (./ant build) and load the seed, seed-initial and  - optionally- demo datasets.
 
