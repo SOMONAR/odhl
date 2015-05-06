@@ -38,6 +38,18 @@
             </condition>
             <link target="EditShipmentGatewayConfig"/>
         </menu-item>
+        <menu-item name="shipmentMethods" title="${uiLabelMap.ShipmentMethods}">
+            <condition>
+                <if-has-permission permission="${activeApp}" action="_ADMIN"/>
+            </condition>
+            <link target="shipmentMethods"/>
+        </menu-item>
+        <menu-item name="shipmentBoxes" title="${uiLabelMap.ShipmentBoxes}">
+            <condition>
+                <if-has-permission permission="${activeApp}" action="_ADMIN"/>
+            </condition>
+            <link target="shipmentBoxes"/>
+        </menu-item>
     </menu>
     
     <menu name="ConfigurationSubTabBar" extends="CommonTabBarMenu" extends-resource="component://common/widget/CommonMenus.xml"
@@ -50,6 +62,26 @@
             </condition>
             <link target="newsystemproperty">
                 <parameter param-name="systemResourceId" value="${activeApp}"/>
+            </link>
+        </menu-item>
+        <menu-item name="createShipmentMethod" title="${uiLabelMap.CommonNew} ${uiLabelMap.ShipmentMethod}">
+            <condition>
+                <or>
+                    <if-has-permission permission="${activeApp}" action="_ADMIN"/>
+                </or>
+            </condition>
+            <link target="newshipmentmethod">
+                <parameter param-name="partyId" value="${activeApp}"/>
+            </link>
+        </menu-item>
+        <menu-item name="createShipmentBox" title="${uiLabelMap.CommonNew} ${uiLabelMap.NewShipmentBox}">
+            <condition>
+                <or>
+                    <if-has-permission permission="${activeApp}" action="_ADMIN"/>
+                </or>
+            </condition>
+            <link target="newshipmentbox">
+                <parameter param-name="partyId" value="${activeApp}"/>
             </link>
         </menu-item>
     </menu>

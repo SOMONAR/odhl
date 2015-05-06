@@ -29,4 +29,120 @@ under the License.
         </field>
     </form>
     
+    <form name="ShipmentMethods" type="list" list-name="methods"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <field name="sequenceNumber"><display/></field>
+        <field name="shipmentMethodTypeId">
+            <display-entity entity-name="ShipmentMethodType"/>
+        </field>
+        <field name="carrierServiceCode"><display/></field>
+        <field name="editLink" title=" " widget-style="buttontext">
+            <hyperlink target="editshipmentmethod" description="${uiLabelMap.CommonEdit}" also-hidden="false">
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentMethodTypeId"/>
+                <parameter param-name="roleTypeId"/>
+            </hyperlink>
+        </field>
+        <field name="deleteLink" title=" " widget-style="buttontext">
+            <hyperlink target="removeshipmentmethod" description="${uiLabelMap.CommonRemove}" also-hidden="false">
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentMethodTypeId"/>
+                <parameter param-name="roleTypeId"/>
+            </hyperlink>
+        </field>
+    </form>
+    
+    <form name="NewShipmentMethod" type="single" target="createshipmentmethod">
+        <field name="partyId"><hidden value="${activeApp}"/></field>
+        <field name="roleTypeId"><hidden value="CARRIER"/></field>
+        <field name="sequenceNumber"><text/></field>
+        <field name="shipmentMethodTypeId">
+            <drop-down>
+                <entity-options description="${description}" entity-name="ShipmentMethodType">
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="carrierServiceCode"><text/></field>
+        <field name="dummy" title=" "><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
+            <submit button-type="button"/>
+        </field>
+    </form>
+    
+    <form name="EditShipmentMethod" type="single" target="updateshipmentmethod" default-map-name="method">
+        <field name="partyId"><hidden value="${activeApp}"/></field>
+        <field name="roleTypeId"><hidden value="CARRIER"/></field>
+        <field name="sequenceNumber"><text/></field>
+        <field name="shipmentMethodTypeId"><hidden/></field>
+        <field name="carrierServiceCode"><text/></field>
+        <field name="dummy" title=" "><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
+            <submit button-type="button"/>
+        </field>
+    </form>
+    
+    <form name="ShipmentBoxes" type="list" list-name="boxes"
+        odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
+        <row-actions>
+            <entity-one value-field="boxType" entity-name="ShipmentBoxType"/>
+        </row-actions>
+        <field name="shipmentBoxTypeId">
+            <display-entity entity-name="ShipmentBoxType"/>
+        </field>
+        <field name="packagingTypeCode"><display/></field>
+        <field name="oversizeCode"><display/></field>
+        <field name="boxSize"><display description="${boxType.boxWidth} x ${boxType.boxLength} x ${boxType.boxHeight}"/></field>
+        <field name="boxType.dimensionUomId" title="${uiLabelMap.CommonUom}">
+            <display-entity entity-name="Uom" key-field-name="uomId"/>
+        </field>
+        <field name="boxWeight"><display description="${boxType.boxWeight}"/></field>
+        <field name="boxType.weightUomId" title="${uiLabelMap.CommonUom}">
+            <display-entity entity-name="Uom" key-field-name="uomId"/>
+        </field>
+        <field name="editLink" title=" " widget-style="buttontext">
+            <hyperlink target="editshipmentbox" description="${uiLabelMap.CommonEdit}" also-hidden="false">
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentBoxTypeId"/>
+            </hyperlink>
+        </field>
+        <field name="deleteLink" title=" " widget-style="buttontext">
+            <hyperlink target="removeshipmentbox" description="${uiLabelMap.CommonRemove}" also-hidden="false">
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentBoxTypeId"/>
+            </hyperlink>
+        </field>
+    </form>
+    
+    <form name="NewShipmentBox" type="single" target="createshipmentbox">
+        <field name="partyId"><hidden value="${activeApp}"/></field>
+        <field name="shipmentBoxTypeId">
+            <drop-down>
+                <entity-options description="${description}" entity-name="ShipmentBoxType">
+                    <entity-order-by field-name="description"/>
+                </entity-options>
+            </drop-down>
+        </field>
+        <field name="packagingTypeCode"><text/></field>
+        <field name="oversizeCode"><text/></field>
+        <field name="dummy" title=" "><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
+            <submit button-type="button"/>
+        </field>
+    </form>
+    
+    <form name="EditShipmentBox" type="single" target="updateshipmentbox" default-map-name="box">
+        <field name="partyId"><hidden/></field>
+        <field name="shipmentBoxTypeId">
+            <display-entity entity-name="ShipmentBoxType"/>
+        </field>
+        <field name="packagingTypeCode"><text/></field>
+        <field name="oversizeCode"><text/></field>
+        <field name="dummy" title=" "><display/></field>
+        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
+            <submit button-type="button"/>
+        </field>
+    </form>
+    
+    
 </forms>

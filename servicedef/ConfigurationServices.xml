@@ -49,4 +49,38 @@
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     
+    <!-- ShipmentMethod -->
+    <service name="createShipmentMethod" default-entity-name="CarrierShipmentMethod" engine="entity-auto" invoke="create" auth="true">
+        <description>Create an Carrier Shipment Method</description>
+        <auto-attributes include="pk" mode="INOUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="updateShipmentMethod" default-entity-name="CarrierShipmentMethod" engine="entity-auto" invoke="update" auth="true">
+        <description>Update an Carrier Shipment Method</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="removeShipmentMethod" default-entity-name="CarrierShipmentMethod" engine="entity-auto" invoke="delete" auth="true">
+        <description>Remove an Carrier Shipment Method</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    
+    <!-- Shipment boxes -->
+    <service name="createShipmentBox" default-entity-name="CarrierShipmentBoxType" engine="entity-auto" invoke="create" auth="true">
+        <description>Create an Carrier Shipment Box</description>
+        <auto-attributes include="pk" mode="INOUT" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="updateShipmentBox" default-entity-name="CarrierShipmentBoxType" engine="entity-auto" invoke="update" auth="true">
+        <description>Update an Carrier Shipment Box</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    <service name="removeShipmentBox" default-entity-name="CarrierShipmentBoxType" engine="entity-auto" invoke="delete" auth="true">
+        <description>Remove an Carrier Shipment Box</description>
+        <auto-attributes include="pk" mode="IN" optional="false"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+    </service>
+    
 </services>

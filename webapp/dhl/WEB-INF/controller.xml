@@ -93,6 +93,66 @@
         <response name="error" type="view" value="EditShipmentGatewayConfig"/>
     </request-map>
     
+    <!-- shipment methods -->
+    <request-map uri="shipmentMethods">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="shipmentMethods"/>
+    </request-map>
+    <request-map uri="newshipmentmethod">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="newshipmentmethod"/>
+    </request-map>
+    <request-map uri="createshipmentmethod">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="createShipmentMethod"/>
+        <response name="success" type="view" value="shipmentMethods"/>
+    </request-map>
+    <request-map uri="removeshipmentmethod">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="removeShipmentMethod"/>
+        <response name="success" type="view" value="shipmentMethods"/>
+    </request-map>
+    <request-map uri="editshipmentmethod">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="editshipmentmethod"/>
+    </request-map>
+    <request-map uri="updateshipmentmethod">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updateShipmentMethod"/>
+        <response name="success" type="view" value="shipmentMethods"/>
+        <response name="error" type="view" value="editshipmentmethod"/>
+    </request-map>
+    
+    <!-- shipment boxess -->
+    <request-map uri="shipmentBoxes">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="shipmentBoxes"/>
+    </request-map>
+    <request-map uri="newshipmentbox">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="newshipmentbox"/>
+    </request-map>
+    <request-map uri="createshipmentbox">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="createShipmentBox"/>
+        <response name="success" type="view" value="shipmentBoxes"/>
+    </request-map>
+    <request-map uri="removeshipmentbox">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="removeShipmentBox"/>
+        <response name="success" type="view" value="shipmentBoxes"/>
+    </request-map>
+    <request-map uri="editshipmentbox">
+        <security https="true" auth="true"/>
+        <response name="success" type="view" value="editshipmentbox"/>
+    </request-map>
+    <request-map uri="updateshipmentbox">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updateShipmentBox"/>
+        <response name="success" type="view" value="shipmentBoxes"/>
+        <response name="error" type="view" value="editshipmentbox"/>
+    </request-map>
+    
     <!-- Carrier requests -->
     <request-map uri="confirm">
         <security https="true" auth="true"/>
@@ -115,5 +175,15 @@
     <view-map name="EditShipmentGatewayConfig" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#EditShipmentGatewayConfig" type="screen"/>
     <view-map name="FindShipmentGatewayConfigTypes" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#FindShipmentGatewayConfigTypes" type="screen"/>
     <view-map name="EditShipmentGatewayConfigType" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#EditShipmentGatewayConfigType" type="screen"/>
+    
+    <!-- shipment methods -->
+    <view-map name="shipmentMethods" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#ShipmentMethods" type="screen"/>
+    <view-map name="newshipmentmethod" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#NewShipmentMethod" type="screen"/>
+    <view-map name="editshipmentmethod" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#EditShipmentMethod" type="screen"/>
+    
+    <!-- shipment boxes -->
+    <view-map name="shipmentBoxes" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#ShipmentBoxes" type="screen"/>
+    <view-map name="newshipmentbox" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#NewShipmentBox" type="screen"/>
+    <view-map name="editshipmentbox" page="component://dhl//widget/ShipmentGatewayConfigScreens.xml#EditShipmentBox" type="screen"/>
     
 </site-conf>
