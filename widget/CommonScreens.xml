@@ -27,7 +27,7 @@
                 
                 <property-map resource="${activeApp}-UiLabels" map-name="uiLabelMap" global="true"/>
                 <property-map resource="CommonUiLabels" map-name="uiLabelMap" global="true"/>
-
+                
                 <set field="layoutSettings.companyName" from-field="uiLabelMap.${activeApp}CompanyName" global="true"/>
                 <set field="layoutSettings.companySubtitle" from-field="uiLabelMap.${activeApp}CompanySubtitle" global="true"/>
                 
