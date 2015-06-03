@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+
+<simple-methods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/simple-methods-v2.xsd">
+    <simple-method method-name="updateShipmentMethodseq"
+        short-description="Update the sequence numbers of the ShipmentMethods">
+        <if-compare field="parameters.mode" value="UP" operator="equals">
+            <!-- check methodsuestTypeId -->
+            <entity-one value-field="method" entity-name="CarrierShipmentMethod"/>
+            <if-compare field="methods.methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG">
+                <entity-count count-field="getNum" entity-name="CustRequestAndCustRequestItem">
+                    <condition-list combine="and">
+                        <condition-expr field-name="productId" from-field="parameters.productId"/>
+                        <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG"/>
+                        <condition-list combine="or">
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_REVIEWED"/>
+                        </condition-list>
+                    </condition-list>
+                </entity-count>
+                <entity-condition list="methods" entity-name="CustRequestAndCustRequestItem">
+                    <condition-list combine="and">
+                        <condition-expr field-name="productId" from-field="parameters.productId" />
+                        <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG"/>
+                        <!--<condition-expr field-name="statusId" from-field="parameters.statusId" ignore-if-empty="true"/>-->
+                        <condition-list combine="and">
+                            <condition-list combine="or">
+                                <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                                <condition-expr field-name="statusId" operator="equals" value="CRQ_REVIEWED"/>
+                            </condition-list>
+                        </condition-list>
+                    </condition-list>
+                    <order-by field-name="sequenceNumber" />
+                </entity-condition>
+                <else>
+                    <entity-count count-field="getNum" entity-name="CustRequestAndCustRequestItem">
+                        <condition-list combine="and">
+                            <condition-expr field-name="productId" from-field="parameters.productId"/>
+                            <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_PROD_BACKLOG"/>
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                        </condition-list>
+                    </entity-count>
+                    <entity-condition list="methods" entity-name="CustRequestAndCustRequestItem">
+                        <condition-list combine="and">
+                            <condition-expr field-name="productId" from-field="parameters.productId" />
+                            <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_PROD_BACKLOG"/>
+                            <condition-expr field-name="statusId" from-field="parameters.statusId" ignore-if-empty="true"/>
+                        </condition-list>
+                        <order-by field-name="sequenceNumber" />
+                    </entity-condition>
+                </else>
+            </if-compare>
+            <loop count="${getNum}" field="i">
+                <if-compare operator="equals" value="${parameters.sequenceNumber}"
+                    field="methods[i].methodsuestId">
+                    <if-compare operator="not-equals" value="0" field="i">
+                        <set field="temp" from-field="methods[i].sequenceNumber" /><!--<log level="always" message="$$$$$$$$$ temp : ${temp}"></log>-->
+                        <set field="methods[i].sequenceNumber" from-field="methods[i-1].sequenceNumber" />
+                        <set field="methods[i-1].sequenceNumber" from-field="temp" />
+
+                        <entity-one value-field="firstup" entity-name="CustRequest">
+                            <field-map field-name="methodsuestId" from-field="methods[i].methodsuestId" />
+                        </entity-one><!--<log level="always" message="666666666666666666666 firstup : ${firstup}"></log>-->
+                        <set field="firstup.sequenceNumber" from-field="methods[i].sequenceNumber" />
+                        <if-empty field="firstup">
+                            <add-error><fail-message message="Cannot find with ID [${methods[i].methodsuestId}] and sequenceNumber [${methods[i].sequenceNumber}]"/></add-error>
+                            <check-errors/>
+                                <else>
+                                    <store-value value-field="firstup" />
+                                </else>
+                        </if-empty>
+
+                        <entity-one value-field="lastup" entity-name="CustRequest">
+                            <field-map field-name="methodsuestId" from-field="methods[i-1].methodsuestId" />
+                        </entity-one>
+                        <set field="lastup.sequenceNumber" from-field="methods[i-1].sequenceNumber" />
+                        <if-empty field="lastup">
+                            <add-error><fail-message message="Cannot find with ID [${methods[i-1].methodsuestId}] and sequenceNumber [${methods[i-1].sequenceNumber}]"/></add-error>
+                            <check-errors/>
+                                <else>
+                                    <store-value value-field="lastup" />
+                                </else>
+                        </if-empty>
+                    </if-compare>
+                </if-compare>
+            </loop>
+        </if-compare>
+        
+        <!-- DOWN -->
+        <if-compare field="parameters.mode" value="DWN" operator="equals">
+            <entity-one value-field="methodsuest" entity-name="CustRequest"/>
+            <if-compare field="methodsuest.methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG">
+                <entity-count count-field="getNum" entity-name="CustRequestAndCustRequestItem">
+                    <condition-list combine="and">
+                        <condition-expr field-name="productId" from-field="parameters.productId"/>
+                        <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG"/>
+                        <condition-list combine="or">
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_REVIEWED"/>
+                        </condition-list>
+                    </condition-list>
+                </entity-count>
+                <entity-condition list="methods" entity-name="CustRequestAndCustRequestItem">
+                    <condition-list combine="and">
+                        <condition-expr field-name="productId" from-field="parameters.productId" />
+                        <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_UNPLAN_BACKLOG"/>
+                        <!--<condition-expr field-name="statusId" from-field="parameters.statusId" ignore-if-empty="true"/>-->
+                        <condition-list combine="and">
+                            <condition-list combine="or">
+                                <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                                <condition-expr field-name="statusId" operator="equals" value="CRQ_REVIEWED"/>
+                            </condition-list>
+                        </condition-list>
+                    </condition-list>
+                    <order-by field-name="sequenceNumber" />
+                </entity-condition>
+                <else>
+                    <entity-count count-field="getNum" entity-name="CustRequestAndCustRequestItem">
+                        <condition-list combine="and">
+                            <condition-expr field-name="productId" from-field="parameters.productId"/>
+                            <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_PROD_BACKLOG"/>
+                            <condition-expr field-name="statusId" operator="equals" value="CRQ_ACCEPTED"/>
+                        </condition-list>
+                    </entity-count>
+                    <entity-condition list="methods" entity-name="CustRequestAndCustRequestItem">
+                        <condition-list combine="and">
+                            <condition-expr field-name="productId" from-field="parameters.productId" />
+                            <condition-expr field-name="methodsuestTypeId" operator="equals" value="RF_PROD_BACKLOG"/>
+                            <condition-expr field-name="statusId" from-field="parameters.statusId" ignore-if-empty="true"/>
+                        </condition-list>
+                        <order-by field-name="sequenceNumber" />
+                    </entity-condition>
+                </else>
+            </if-compare>
+            <loop count="${getNum-1}" field="i">
+                <if-compare operator="equals" value="${parameters.methodsuestId}"
+                    field="methods[i].methodsuestId">
+                    <if-compare operator="not-equals" value="${getnum-1}"
+                        field="i">
+                        <set field="temp" from-field="methods[i].sequenceNumber" />
+                        <set field="methods[i].sequenceNumber" from-field="methods[i+1].sequenceNumber" />
+                        <set field="methods[i+1].sequenceNumber" from-field="temp" />
+
+                        <entity-one value-field="first" entity-name="CustRequest">
+                            <field-map field-name="methodsuestId" from-field="methods[i].methodsuestId" />
+                        </entity-one>
+                        <set field="first.sequenceNumber" from-field="methods[i].sequenceNumber" />
+                        <if-empty field="first">
+                            <add-error><fail-message message="Cannot find with ID [${methods[i].methodsuestId}] and sequenceNumber [${methods[i].sequenceNumber}]"/></add-error>
+                            <check-errors/>
+                                <else>
+                                    <store-value value-field="first" />
+                                </else>
+                        </if-empty>
+
+                        <entity-one value-field="last" entity-name="CustRequest">
+                            <field-map field-name="methodsuestId" from-field="methods[i+1].methodsuestId" />
+                        </entity-one>
+                        <set field="last.sequenceNumber" from-field="methods[i+1].sequenceNumber" />
+                        <if-empty field="last">
+                            <add-error><fail-message message="Cannot find with ID [${methods[i+1].methodsuestId}] and sequenceNumber [${methods[i+1].sequenceNumber}]"/></add-error>
+                            <check-errors/>
+                                <else>
+                                    <store-value value-field="last" />
+                                </else>
+                        </if-empty>
+                    </if-compare>
+                </if-compare>
+            </loop>
+        </if-compare>
+    </simple-method>
+</simple-methods>
