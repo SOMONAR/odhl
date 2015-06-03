@@ -20,7 +20,7 @@
 <forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:noNamespaceSchemaLocation="http://ofbiz.apache.org/dtds/widget-form.xsd">
     
-    <form name="ListSystemProperties" type="multi" list-name="systemProperties"
+    <form name="ListSystemProperties" type="list" list-name="systemProperties"
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
         <field name="systemResourceId"><hidden/></field>
         <field name="systemPropertyId"><display/></field>

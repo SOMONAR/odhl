@@ -29,9 +29,30 @@ under the License.
         </field>
     </form>
     
-    <form name="ShipmentMethods" type="list" list-name="methods"
+    <form name="ShipmentMethods" type="list" use-row-submit="false" list-name="methods"
+        target="updateShipmentMethodsItemRow?productId=${productId}&amp;sequence=${sequence}&amp;backStatusId=CRQ_ACCEPTED" 
         odd-row-style="alternate-row" default-table-style="basic-table hover-bar">
-        <field name="sequenceNumber"><display/></field>
+        
+        <field name="sequenceNumber" title-area-style="align-right" widget-area-style="align-right"><display/></field>
+        <field name="dummy" title=" "><display description=" "/></field>
+        <field name="up" position="1" title=" " >
+            <hyperlink target="updateShipmentMethodseq" image-location="/images/arrow-single-up-green.png">
+                <parameter param-name="mode" value="UP"/>
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentMethodTypeId"/>
+                <parameter param-name="roleTypeId"/>
+                <parameter param-name="sequence" value="Y"/>
+            </hyperlink>
+        </field>
+        <field name="dwn" position="1" title=" ">
+            <hyperlink target="updateShipmentMethodseq" image-location="/images/arrow-single-down-green.png">
+                <parameter param-name="mode" value="DWN"/>
+                <parameter param-name="partyId"/>
+                <parameter param-name="shipmentMethodTypeId"/>
+                <parameter param-name="roleTypeId"/>
+                <parameter param-name="sequence" value="Y"/>
+            </hyperlink>
+        </field>
         <field name="shipmentMethodTypeId">
             <display-entity entity-name="ShipmentMethodType"/>
         </field>
@@ -65,7 +86,7 @@ under the License.
         </field>
         <field name="carrierServiceCode"><text/></field>
         <field name="dummy" title=" "><display/></field>
-        <field name="submitButton" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
+        <field name="saveLink" title="${uiLabelMap.CommonSave}" widget-style="buttontext" >
             <submit button-type="button"/>
         </field>
     </form>
