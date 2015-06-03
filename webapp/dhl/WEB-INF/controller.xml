@@ -123,7 +123,14 @@
         <response name="error" type="view" value="editshipmentmethod"/>
     </request-map>
     
-    <!-- shipment boxess -->
+    <request-map uri="updateShipmentMethodseq">
+        <security https="true" auth="true"/>
+        <event type="service" invoke="updateShipmentMethodseq"/>
+        <response name="success" type="view" value="shipmentMethods"/>
+        <response name="error" type="view" value="shipmentMethods"/>
+    </request-map>
+    
+    <!-- shipment boxes -->
     <request-map uri="shipmentBoxes">
         <security https="true" auth="true"/>
         <response name="success" type="view" value="shipmentBoxes"/>
