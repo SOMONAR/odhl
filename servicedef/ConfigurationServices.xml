@@ -66,6 +66,16 @@
         <auto-attributes include="nonpk" mode="IN" optional="true"/>
     </service>
     
+    <service name="updateShipmentMethodseq" engine="simple" default-entity-name="CarrierShipmentMethod" auth="true"
+        location="component://dhl/script/org/ofbiz/configuration/ShipmentServices.xml" invoke="updateShipmentMethodseq" transaction-timeout="0">
+        <auto-attributes mode="IN" include="pk"/>
+        <auto-attributes include="nonpk" mode="IN" optional="true"/>
+        <attribute name="mode" type="String" mode="IN"/><!-- possible values: TOP, BOTTOM, UP, DOWN -->
+        <attribute name="sequenceNumber" type="String" mode="INOUT" optional="true"/>
+        <attribute name="shipmentMethodTypeId" type="String" mode="INOUT" optional="true"/>
+        <attribute name="carrierServiceCode" type="String" mode="INOUT" optional="true"/>
+    </service>
+    
     <!-- Shipment boxes -->
     <service name="createShipmentBox" default-entity-name="CarrierShipmentBoxType" engine="entity-auto" invoke="create" auth="true">
         <description>Create an Carrier Shipment Box</description>
